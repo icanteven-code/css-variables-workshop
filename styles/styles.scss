@@ -2,7 +2,31 @@
 @import "_reset.scss";
 
 :root {
-    --primary-clr: #845ec2;
+    // Base tokens
+    --clr-purple-100: #DACFED;
+    --clr-purple-300: #B59EDA;
+    --clr-purple-400: #845ec2;
+    --clr-purple-500: #5C4288;
+
+    --clr-green-100: #b3efe5;
+    --clr-green-300: #4dd9c1;
+    --clr-green-400: #00c9a7;
+    --clr-green-500: #008d75;
+
+    --clr-orange-100: #ffe0d4;
+    --clr-orange-300: #ffb69c;
+    --clr-orange-400: #ff9671;
+    --clr-orange-500: #b3694f;
+
+    --clr-red-100: #ffd4de;
+    --clr-red-300: #ff9ab2;
+    --clr-red-400: #ff6f91;
+    --clr-red-500: #b34e66;
+
+    --clr-white: #fff;
+
+    // Context variables
+    --primary-clr: var(--clr-purple-400);
     --border-card: 1px solid rgba(0, 0, 0, .125);
 }
 
@@ -34,18 +58,18 @@ body {
 ------------------ */
 
 .card {
-    --p-base: 1rem;
+    --p-base: .75rem;
     --px: calc(2 * var(--p-base));
-    --py: calc(1.5 * var(--p-base));
-    color: black;
-    background-color: #fff;
+    --py: calc(1 * var(--p-base));
+    color: var(--clr-text, black);
+    background-color: var(--clr-bg-body, #fff);
     border: var(--border-card);
     border-radius: .625rem;
     overflow: hidden;
 
     .card__header {
         padding: var(--py) var(--px);
-        background-color: rgba(0, 0, 0, .03);
+        background-color: var(--clr-bg-header, rgba(0, 0, 0, .03));
         border-bottom: var(--border-card);
     }
 
@@ -55,13 +79,31 @@ body {
     }
 
     .card__title {
-        color: var(--primary-clr);
+        color: var(--clr-title, var(--primary-clr));
         margin-bottom: var(--py);
         line-height: 1;
     }
 
     .card__text {
         margin-bottom: var(--py);
+    }
+
+    &.card--success {
+        --clr-bg-body: var(--clr-green-100);
+        --clr-bg-header: var(--clr-green-400);
+        --clr-title: var(--clr-green-500)
+    }
+
+    &.card--warn {
+        --clr-bg-body: var(--clr-orange-100);
+        --clr-bg-header: var(--clr-orange-400);
+        --clr-title: var(--clr-orange-500)
+    }
+
+    &.card--danger {
+        --clr-bg-body: var(--clr-red-100);
+        --clr-bg-header: var(--clr-red-400);
+        --clr-title: var(--clr-red-500)
     }
 }
 
@@ -71,8 +113,9 @@ body {
 ------------------ */
 
 .btn {
-    background-color: #ececec;
-    border: 1px solid lightgray;
+    color: var(--btn-clr-text, black);
+    background-color: var(--btn-clr-bg, #ececec);
+    border: 1px solid var(--btn-clr-bg-dark, lightgray);
     display: inline-block;
     font-weight: 400;
     text-align: center;
@@ -83,10 +126,36 @@ body {
     line-height: 1.5;
     border-radius: .25rem;
     cursor: pointer;
-
-    transition: background-color 300ms ease-in-out;
+    transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
 
     &:hover {
-        background-color: lightgray;
+        background-color: var(--btn-clr-bg-dark, lightgray);
+    }
+
+    &.btn--success {
+        --btn-clr-bg: var(--clr-green-300);
+        --btn-clr-bg-dark: var(--clr-green-500);
+
+        &:hover {
+            --btn-clr-text: var(--clr-white);
+        }
+    }
+
+    &.btn--warn {
+        --btn-clr-bg: var(--clr-orange-300);
+        --btn-clr-bg-dark: var(--clr-orange-500);
+
+        &:hover {
+            --btn-clr-text: var(--clr-white);
+        }
+    }
+
+    &.btn--danger {
+        --btn-clr-bg: var(--clr-red-300);
+        --btn-clr-bg-dark: var(--clr-red-500);
+
+        &:hover {
+            --btn-clr-text: var(--clr-white);
+        }
     }
 }
