@@ -1,0 +1,21 @@
+{
+  "name": "css-variables-workshop",
+  "version": "0.0.0",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Simeon Petrov",
+    "url": "https://github.com/simeon-petrov-5"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^4.0.0"
+  },
+  "dependencies": {
+    "sass": "^1.57.1"
+  }
+}
