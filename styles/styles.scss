@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import "_reset.scss";
 
+:root {
+    --primary-clr: #845ec2;
+    --border-card: 1px solid rgba(0, 0, 0, .125);
+}
+
 /* ------------------
         LAYOUT
 ------------------ */
@@ -11,9 +16,11 @@ body {
 }
 
 .page-title {
+    --text-size: red;
     text-align: center;
     margin-bottom: 3rem;
-    color: #845ec2;
+    color: var(--primary-clr);
+    font-size: var(--text-size, 40px);
 }
 
 .cards-grid {
@@ -27,31 +34,34 @@ body {
 ------------------ */
 
 .card {
+    --p-base: 1rem;
+    --px: calc(2 * var(--p-base));
+    --py: calc(1.5 * var(--p-base));
     color: black;
     background-color: #fff;
-    border: 1px solid rgba(0, 0, 0, .125);
+    border: var(--border-card);
     border-radius: .625rem;
     overflow: hidden;
 
     .card__header {
-        padding: .75rem 1.5rem;
+        padding: var(--py) var(--px);
         background-color: rgba(0, 0, 0, .03);
-        border-bottom: 1px solid rgba(0, 0, 0, .125);
+        border-bottom: var(--border-card);
     }
 
     .card__body {
         flex: 1 1 auto;
-        padding: .75rem 1.5rem;
+        padding: var(--py) var(--px);
     }
 
     .card__title {
-        color: #845ec2;
-        margin-bottom: .75rem;
+        color: var(--primary-clr);
+        margin-bottom: var(--py);
         line-height: 1;
     }
 
     .card__text {
-        margin-bottom: .75rem;
+        margin-bottom: var(--py);
     }
 }
 
@@ -68,7 +78,7 @@ body {
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
-    padding: .375rem .75rem;
+    padding: .375rem var(--py);
     font-size: 1rem;
     line-height: 1.5;
     border-radius: .25rem;
