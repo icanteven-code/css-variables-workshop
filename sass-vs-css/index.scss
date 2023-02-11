@@ -1,7 +1,15 @@
+/* Variables in SASS - https://sass-lang.com/documentation/variables */
+
+
+// Difference 1 - Sass variables are all compiled away by Sass. CSS variables are included in the CSS output.
 $breakpoint-md: 768px;
 $breakpoint-lg: 1024px;
 
-.cards-grid {
+:root{
+    --size-md: #{$breakpoint-md};
+}
+
+.cards {
     --grid-cols: 1;
     --grid-gap: 1rem;
     display: grid;
@@ -10,15 +18,68 @@ $breakpoint-lg: 1024px;
 }
 
 @media screen and (min-width: $breakpoint-md) {
-    .cards-grid {
+    .cards {
         --grid-cols: 2;
         --grid-gap: 1.25rem;
     }
 }
 
 @media screen and (min-width: $breakpoint-lg) {
-    .cards-grid {
+    .cards {
         --grid-cols: 4;
         --grid-gap: 1.5rem;
     }
+}
+
+// Difference 2 - CSS variables can have different values for different elements, but Sass variables only have one value at a time.
+:root {
+    --element-color: red;
+}
+
+$single-val: blue;
+
+.first-element {
+    --element-color: green;
+    color: var(--element-color);
+    $single-val: orange;
+    background-color: $single-val;
+}
+
+.first-element span {
+    color: var(--element-color);
+    background-color: $single-val;
+}
+
+.second-element {
+    --element-color: yellow;
+    color: var(--element-color);
+}
+
+
+// Difference 3 - Sass variables are imperative, which means if you use a variable and then change its value, the earlier use will stay the same. CSS variables are declarative, which means if you change the value, it’ll affect both earlier uses and later uses.
+
+
+:root {
+    --declarative-color: red;
+}
+
+$imperative-val: orange;
+
+.title{
+    color: var(--declarative-color);
+    background-color: $imperative-val;
+}
+
+.description{
+    color: var(--declarative-color);
+    background-color: $imperative-val;
+}
+
+:root {
+    --declarative-color: green;
+}
+
+$imperative-val: yellow;
+.new-example{
+    background-color: $imperative-val;
 }
